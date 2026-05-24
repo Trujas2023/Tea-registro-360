@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEA Registro 360 · Acompañando a tu hijo, organizando su mundo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+  :root {
+    /* PALETA CLÍNICA SUAVE */
+    --bg: #f8fafc;
+    --bg-alt: #f1f5f9;
+    --cloud: #ffffff;
+    --ink: #0f172a;
+    --ink-mid: #334155;
+    --ink-soft: #64748b;
+    --ink-faint: #94a3b8;
+    --rule: #e2e8f0;
+    --rule-soft: #f1f5f9;
+
+    /* Azules profesionales */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #dbeafe;
+    --primary-bg: #eff6ff;
+
+    /* Acentos para datos */
+    --teal: #0d9488;
+    --teal-bg: #ccfbf1;
+    --amber: #d97706;
+    --amber-bg: #fef3c7;
+    --rose: #be185d;
+    --rose-bg: #fce7f3;
+    --violet: #7c3aed;
+    --violet-bg: #ede9fe;
+    --emerald: #059669;
+    --emerald-bg: #d1fae5;
+
+    --red: #dc2626;
+    --red-bg: #fee2e2;
+  }
+
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .app { width: 100%; min-height: 100vh; }
+
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: block; }
+
+  /* ════════════════════════════════════════════ */
+  /*                  LANDING                     */
+  /* ════════════════════════════════════════════ */
+  .nav {
+    background: var(--cloud);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.9);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary), #4f46e5);
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  }
+  .logo-text {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+  }
+  .logo-text span {
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 11px;
+    display: block;
+    margin-top: -2px;
+    letter-spacing: 0;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--ink-mid);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--primary); }
+
+  .btn {
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-mid);
+    border-color: var(--rule);
+  }
+  .btn-ghost:hover { border-color: var(--ink-mid); color: var(--ink); }
+  .btn-lg { padding: 13px 22px; font-size: 15px; }
+  .btn-full { width: 100%; justify-content: center; }
+
+  .hero {
+    padding: 70px 20px 80px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37, 99, 235, 0.06), transparent),
+      var(--bg);
+  }
+  .hero-content { max-width: 760px; margin: 0 auto; }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-mid);
+    margin-bottom: 32px;
+    line-height: 1.55;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .hero-note {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+  }
+
+  .section { padding: 70px 20px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-sub {
+    text-align: center;
+    font-size: 17px;
+    color: var(--ink-mid);
+    max-width: 600px;
+    margin: 0 auto 50px;
+    line-height: 1.55;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .feature-card {
+    background: var(--cloud);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 26px 22px;
+    transition: all 0.2s;
+  }
+  .feature-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .feature-icon.blue { background: var(--primary-bg); color: var(--primary); }
+  .feature-icon.teal { background: var(--teal-bg); color: var(--teal); }
+  .feature-icon.amber { background: var(--amber-bg); color: var(--amber); }
+  .feature-icon.rose { background: var(--rose-bg); color: var(--rose); }
+  .feature-icon.violet { background: var(--violet-bg); color: var(--violet); }
+  .feature-icon.emerald { background: var(--emerald-bg); color: var(--emerald); }
+
+  .feature-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .feature-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: var(--cloud);
+    border: 2px solid var(--rule);
+    border-radius: 16px;
+    padding: 32px 26px;
+    position: relative;
+  }
+  .price-card.featured {
+    border-color: var(--primary);
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.12);
+    transform: scale(1.02);
+  }
+  .price-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .price-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .price-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .price-tag {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 22px;
+  }
+  .price-amount {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--ink);
+  }
+  .price-period {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .price-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .price-features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .price-features li::before {
+    content: "✓";
+    color: var(--emerald);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial {
+    background: var(--cloud);
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 720px;
+    margin: 0 auto;
+    border: 1px solid var(--rule);
+    text-align: center;
+  }
+  .testimonial-quote {
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .testimonial-author {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: linear-gradient(135deg, var(--primary), #4f46e5 60%, #7c3aed);
+    color: white;
+    text-align: center;
+    padding: 70px 24px;
+    border-radius: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .cta-final h2 {
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  .cta-final p {
+    font-size: 17px;
+    opacity: 0.92;
+    margin-bottom: 28px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-final .btn-primary {
+    background: white;
+    color: var(--primary);
+  }
+  .cta-final .btn-primary:hover { background: var(--bg-alt); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--cloud);
+    border-top: 1px solid var(--rule);
+    padding: 50px 20px 28px;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 36px;
+    margin-bottom: 32px;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    padding: 5px 0;
+    color: var(--ink-mid);
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .footer-col a:hover { color: var(--primary); }
+  .footer-tag { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-top: 14px; max-width: 280px; }
+  .footer-bottom {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+  }
+  .footer-bottom strong { color: var(--ink-soft); }
+
+  /* ════════════════════════════════════════════ */
+  /*                  AUTH (LOGIN)                */
+  /* ════════════════════════════════════════════ */
+  .auth-screen {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37, 99, 235, 0.06), transparent),
+      var(--bg);
+  }
+  .auth-card {
+    background: var(--cloud);
+    border-radius: 18px;
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid var(--rule);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+  }
+  .auth-logo {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .auth-logo .logo-mark {
+    margin: 0 auto 10px;
+  }
+  .auth-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.4px;
+  }
+  .auth-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+  }
+  .form-input {
+    width: 100%;
+    background: var(--cloud);
+    border: 1.5px solid var(--rule);
+    border-radius: 9px;
+    padding: 11px 14px;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-input:focus { border-color: var(--primary); }
+
+  .form-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  .form-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--ink-faint);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .form-divider::before, .form-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .auth-foot {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .auth-foot a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .demo-banner {
+    background: var(--amber-bg);
+    color: var(--amber);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  /* ════════════════════════════════════════════ */
+  /*                  DASHBOARD                   */
+  /* ════════════════════════════════════════════ */
+  .dash-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+  }
+  .sidebar {
+    background: var(--cloud);
+    border-right: 1px solid var(--rule);
+    padding: 18px 14px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-logo {
+    padding: 4px 8px 18px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-section {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 8px 6px;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    color: var(--ink-mid);
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.15s;
+    margin-bottom: 1px;
+  }
+  .sidebar-link:hover { background: var(--bg-alt); color: var(--ink); }
+  .sidebar-link.active {
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    font-weight: 600;
+  }
+  .sidebar-link-icon { font-size: 16px; }
+
+  .sidebar-foot {
+    margin-top: auto;
+    padding: 12px 8px;
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .sidebar-user:hover { background: var(--bg-alt); }
+  .sidebar-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--violet));
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .sidebar-user-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .sidebar-user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sidebar-user-role {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .main {
+    padding: 24px 28px 60px;
+    overflow-x: hidden;
+  }
+  .page-header {
+    margin-bottom: 24px;
+  }
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* Dashboard cards */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .kpi-card {
+    background: var(--cloud);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .kpi-label-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .kpi-trend {
+    font-size: 12px;
+    color: var(--emerald);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .kpi-trend.down { color: var(--rose); }
+  .kpi-trend.flat { color: var(--ink-faint); }
+
+  .panel {
+    background: var(--cloud);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 18px;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .panel-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    margin-top: -8px;
+  }
+  .panel-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .icon-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* Two columns layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* Chart placeholder */
+  .chart-area {
+    height: 200px;
+    background: linear-gradient(180deg, var(--primary-bg), transparent);
+    border-radius: 10px;
+    position: relative;
+    padding: 16px;
+    overflow: hidden;
+  }
+  .chart-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Activity list */
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg-alt);
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .activity-text {
+    flex: 1;
+  }
+  .activity-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .activity-time {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  /* Alerts */
+  .alert {
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .alert.warn {
+    background: var(--amber-bg);
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+  .alert.info {
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    border: 1px solid #bfdbfe;
+  }
+  .alert.success {
+    background: var(--emerald-bg);
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-content { flex: 1; }
+  .alert-title { font-weight: 700; margin-bottom: 3px; font-size: 13px; }
+
+  /* Forms in dashboard */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .quick-btn {
+    background: var(--cloud);
+    border: 1.5px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px 12px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .quick-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+  }
+  .quick-btn-icon {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Scale buttons */
+  .scale-grid {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .scale-btn {
+    flex: 1;
+    background: var(--bg-alt);
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    padding: 12px 4px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .scale-btn:hover {
+    background: var(--primary-bg);
+    color: var(--primary);
+  }
+  .scale-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  .scale-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  /* Chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    background: var(--bg-alt);
+    border: 1.5px solid transparent;
+    color: var(--ink-mid);
+    padding: 7px 13px;
+    border-radius: 18px;
+    font-family: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .chip:hover { background: var(--primary-bg); color: var(--primary); }
+  .chip.active {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: var(--bg-alt);
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule-soft);
+    color: var(--ink-mid);
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill.success { background: var(--emerald-bg); color: #065f46; }
+  .pill.warn { background: var(--amber-bg); color: #92400e; }
+  .pill.info { background: var(--primary-bg); color: var(--primary-dark); }
+  .pill.danger { background: var(--red-bg); color: #991b1b; }
+
+  /* Tabs interno */
+  .tabs-inner {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 22px;
+    overflow-x: auto;
+  }
+  .tab-inner {
+    background: none;
+    border: none;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab-inner:hover { color: var(--ink); }
+  .tab-inner.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+
+  /* Mobile menu */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  /* Legal docs */
+  .legal-screen {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .legal-screen h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 6px;
+  }
+  .legal-screen .updated {
+    color: var(--ink-faint);
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+  .legal-screen h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .legal-screen h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 22px;
+    margin-bottom: 8px;
+  }
+  .legal-screen p, .legal-screen li {
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .legal-screen ul, .legal-screen ol {
+    padding-left: 22px;
+    margin-bottom: 14px;
+  }
+  .legal-screen strong { color: var(--ink); }
+  .legal-screen .callout {
+    background: var(--amber-bg);
+    border-left: 4px solid var(--amber);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: #78350f;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links a:not(.btn) { display: none; }
+    .hero h1 { font-size: 34px; }
+    .section-title { font-size: 26px; }
+    .dash-layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -260px;
+      width: 240px;
+      transition: left 0.3s ease;
+      z-index: 100;
+    }
+    .sidebar.open { left: 0; box-shadow: 0 0 40px rgba(0,0,0,0.2); }
+    .mobile-menu-btn { display: block; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .main { padding: 16px 18px 40px; }
+    .page-title { font-size: 22px; }
+    .price-card.featured { transform: none; }
+    .cta-final h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SCREEN: LANDING -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen active" id="screen-landing">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" onclick="show('landing')">
+        <div class="logo-mark">∞</div>
+        <div class="logo-text">TEA Registro 360<span>Acompañamiento profesional</span></div>
+      </a>
+      <div class="nav-links">
+        <a onclick="scrollTo2('features')">Funciones</a>
+        <a onclick="scrollTo2('pricing')">Precios</a>
+        <a onclick="show('legal-privacy')">Privacidad</a>
+        <a class="btn btn-ghost" onclick="show('login')">Iniciar sesión</a>
+        <a class="btn btn-primary" onclick="show('register')">Comenzar gratis</a>
+      </div>
+      <button class="mobile-menu-btn" onclick="show('login')">≡</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span>🧩</span> Para familias con hijos en el espectro autista
+      </div>
+      <h1>Organiza el día a día de tu hijo<br><em>en un solo lugar</em></h1>
+      <p class="hero-sub">
+        Registra sueño, alimentación, crisis, terapias y medicación. Detecta patrones automáticamente. Genera reportes profesionales para tu neuropediatra en segundos.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" onclick="show('register')">Empezar 14 días gratis</button>
+        <button class="btn btn-ghost btn-lg" onclick="show('dashboard')">Ver demo en vivo</button>
+      </div>
+      <p class="hero-note">Sin tarjeta de crédito · Cancela cuando quieras · Datos protegidos</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="section-inner">
+      <div class="section-eyebrow">9 herramientas en una</div>
+      <h2 class="section-title">Todo lo que necesitas para entender los patrones de tu hijo</h2>
+      <p class="section-sub">Diseñado con familias TEA reales y validado por terapeutas. No reemplaza a tu médico — lo complementa con datos.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon blue">👤</div>
+          <div class="feature-title">Perfil del niño</div>
+          <div class="feature-desc">Datos clínicos, diagnósticos, alergias, contactos de emergencia y red de profesionales en un solo lugar.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon violet">🌙</div>
+          <div class="feature-title">Bitácora de sueño</div>
+          <div class="feature-desc">Hora de dormir, despertares, calidad. Detecta cuándo el sueño está afectando la regulación al día siguiente.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon amber">🍯</div>
+          <div class="feature-title">Alimentación</div>
+          <div class="feature-desc">Selectividad, aceptación, síntomas digestivos. Cruza datos con conducta para entender el eje intestino-cerebro.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon rose">🌅</div>
+          <div class="feature-title">Conducta y crisis</div>
+          <div class="feature-desc">Registra meltdowns, detonantes, duración e intervenciones que funcionaron. Identifica predictores con el tiempo.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon teal">✋</div>
+          <div class="feature-title">Perfil sensorial</div>
+          <div class="feature-desc">Hipo/hipersensibilidad por canal (auditivo, táctil, visual, gustativo). Útil para ajustar el entorno.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon emerald">🧠</div>
+          <div class="feature-title">Terapias</div>
+          <div class="feature-desc">ABA, fonoaudiología, ocupacional, psicología. Sesiones, avances, tareas para casa.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon rose">💊</div>
+          <div class="feature-title">Medicación</div>
+          <div class="feature-desc">Dosis, horarios, efectos observados, recordatorios. Historial para el psiquiatra.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon blue">📅</div>
+          <div class="feature-title">Citas médicas</div>
+          <div class="feature-desc">Agenda con notificaciones. Notas pre y post consulta. Nunca olvides preguntar lo importante.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon violet">📄</div>
+          <div class="feature-title">Reporte PDF profesional</div>
+          <div class="feature-desc">Semanal, mensual o personalizado. Listo para entregar al médico con datos, gráficas y observaciones.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section" style="background: var(--bg-alt);">
+    <div class="section-inner">
+      <div class="testimonial">
+        <p class="testimonial-quote">"Llevaba 3 años con cuadernos llenos de notas. En la primera consulta usando los reportes de TEA Registro 360, mi neuropediatra detectó un patrón que yo no había visto. Cambió completamente el tratamiento de mi hijo."</p>
+        <p class="testimonial-author">— María L., mamá de Daniel (7 años) · Ciudad de México</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="section-inner">
+      <div class="section-eyebrow">Precios</div>
+      <h2 class="section-title">Elige el plan que mejor te acompañe</h2>
+      <p class="section-sub">Empieza gratis 14 días. Sin tarjeta. Cancela en cualquier momento.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-name">Esencial</div>
+          <div class="price-desc">Para empezar a registrar</div>
+          <div class="price-tag">
+            <span class="price-amount">$199</span>
+            <span class="price-period">MXN / mes</span>
+          </div>
+          <ul class="price-features">
+            <li>1 perfil de niño</li>
+            <li>Bitácora diaria completa</li>
+            <li>8 secciones de seguimiento</li>
+            <li>Reportes PDF mensuales</li>
+            <li>Soporte por email</li>
+          </ul>
+          <button class="btn btn-ghost btn-full" onclick="show('register')">Empezar gratis</button>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-badge">MÁS POPULAR</div>
+          <div class="price-name">Profesional</div>
+          <div class="price-desc">Lo que la mayoría elige</div>
+          <div class="price-tag">
+            <span class="price-amount">$349</span>
+            <span class="price-period">MXN / mes</span>
+          </div>
+          <ul class="price-features">
+            <li>Hasta 3 perfiles de niños</li>
+            <li>Todo lo de Esencial</li>
+            <li>Reportes PDF personalizados</li>
+            <li>Detección automática de patrones</li>
+            <li>Panel compartido con terapeuta</li>
+            <li>Soporte prioritario por WhatsApp</li>
+          </ul>
+          <button class="btn btn-primary btn-full" onclick="show('register')">Empezar gratis</button>
+        </div>
+
+        <div class="price-card">
+          <div class="price-name">Clínico</div>
+          <div class="price-desc">Para terapeutas y clínicas</div>
+          <div class="price-tag">
+            <span class="price-amount">$799</span>
+            <span class="price-period">MXN / mes</span>
+          </div>
+          <ul class="price-features">
+            <li>Hasta 20 pacientes</li>
+            <li>Todo lo de Profesional</li>
+            <li>Múltiples profesionales</li>
+            <li>Exportación a Excel/CSV</li>
+            <li>Logo de tu clínica en reportes</li>
+            <li>Capacitación 1-a-1</li>
+          </ul>
+          <button class="btn btn-ghost btn-full" onclick="show('register')">Hablar con ventas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="cta-final">
+      <h2>Empieza hoy. Tu próxima consulta médica será diferente.</h2>
+      <p>14 días gratis. Sin tarjeta. Cancela cuando quieras. Tus datos te pertenecen.</p>
+      <button class="btn btn-primary btn-lg" onclick="show('register')">Crear mi cuenta ahora</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="logo" onclick="show('landing')">
+            <div class="logo-mark" style="width:32px;height:32px;font-size:14px;">∞</div>
+            <div class="logo-text">TEA Registro 360</div>
+          </a>
+          <p class="footer-tag">Una herramienta de organización para familias con hijos en el espectro autista. Esta app no diagnostica ni sustituye atención médica profesional.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Producto</h4>
+          <a onclick="scrollTo2('features')">Funciones</a>
+          <a onclick="scrollTo2('pricing')">Precios</a>
+          <a onclick="show('dashboard')">Demo</a>
+          <a onclick="show('login')">Iniciar sesión</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a onclick="show('legal-privacy')">Aviso de privacidad</a>
+          <a onclick="show('legal-terms')">Términos y condiciones</a>
+          <a onclick="show('legal-responsible')">Uso responsable</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <a href="mailto:contacto@tearegistro360.com">contacto@tearegistro360.com</a>
+          <a>WhatsApp soporte</a>
+          <a>FAQ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 <strong>Lic. Enrique Alonso Trujillo Martínez</strong> · TEA Registro 360 · Todos los derechos reservados<br>
+        Esta plataforma no diagnostica ni sustituye atención médica profesional.
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SCREEN: LOGIN -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-login">
+  <div class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-mark" style="width:48px;height:48px;font-size:22px;">∞</div>
+      </div>
+      <h1 class="auth-title">Bienvenido de vuelta</h1>
+      <p class="auth-sub">Ingresa a tu cuenta de TEA Registro 360</p>
+
+      <div class="demo-banner">⚠ DEMO · No ingreses datos reales</div>
+
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-input" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-input" placeholder="••••••••">
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="show('dashboard')">Iniciar sesión</button>
+
+      <div class="form-divider">o</div>
+
+      <button class="btn btn-ghost btn-full" onclick="show('dashboard')">Continuar como invitado (demo)</button>
+
+      <p class="auth-foot">
+        ¿No tienes cuenta? <a onclick="show('register')">Regístrate gratis</a><br>
+        <a onclick="show('landing')" style="font-size:12px;color:var(--ink-soft);">← Volver al inicio</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SCREEN: REGISTER -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-register">
+  <div class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-mark" style="width:48px;height:48px;font-size:22px;">∞</div>
+      </div>
+      <h1 class="auth-title">Crea tu cuenta gratis</h1>
+      <p class="auth-sub">14 días de prueba sin compromiso · No pedimos tarjeta</p>
+
+      <div class="demo-banner">⚠ DEMO · No ingreses datos reales</div>
+
+      <div class="form-group">
+        <label class="form-label">Nombre del padre/madre/tutor</label>
+        <input type="text" class="form-input" placeholder="María García">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-input" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-input" placeholder="Mínimo 8 caracteres">
+        <p class="form-hint">Usa mayúsculas, números y símbolos.</p>
+      </div>
+      <div class="form-group" style="display:flex;gap:8px;align-items:flex-start;">
+        <input type="checkbox" id="accept" style="margin-top:3px;">
+        <label for="accept" style="font-size:12px;color:var(--ink-soft);line-height:1.5;">
+          Acepto los <a onclick="show('legal-terms')" style="color:var(--primary);cursor:pointer;">términos y condiciones</a>, el <a onclick="show('legal-privacy')" style="color:var(--primary);cursor:pointer;">aviso de privacidad</a> y el <a onclick="show('legal-responsible')" style="color:var(--primary);cursor:pointer;">aviso de uso responsable</a>.
+        </label>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="show('dashboard')">Crear cuenta gratis</button>
+
+      <p class="auth-foot">
+        ¿Ya tienes cuenta? <a onclick="show('login')">Inicia sesión</a><br>
+        <a onclick="show('landing')" style="font-size:12px;color:var(--ink-soft);">← Volver al inicio</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SCREEN: DASHBOARD (con secciones internas) -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-dashboard">
+  <div class="dash-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <a class="logo" onclick="show('landing')">
+          <div class="logo-mark" style="width:32px;height:32px;font-size:15px;">∞</div>
+          <div class="logo-text" style="font-size:14px;">TEA Registro 360<span>v1.0 beta</span></div>
+        </a>
+      </div>
+
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-link active" onclick="showDash('home')"><span class="sidebar-link-icon">🏠</span> Inicio</div>
+      <div class="sidebar-link" onclick="showDash('daily')"><span class="sidebar-link-icon">📔</span> Bitácora diaria</div>
+      <div class="sidebar-link" onclick="showDash('profile')"><span class="sidebar-link-icon">👤</span> Perfil de mi hijo</div>
+
+      <div class="sidebar-section">Seguimiento</div>
+      <div class="sidebar-link" onclick="showDash('sleep')"><span class="sidebar-link-icon">🌙</span> Sueño</div>
+      <div class="sidebar-link" onclick="showDash('food')"><span class="sidebar-link-icon">🍯</span> Alimentación</div>
+      <div class="sidebar-link" onclick="showDash('behavior')"><span class="sidebar-link-icon">🌅</span> Conducta y crisis</div>
+      <div class="sidebar-link" onclick="showDash('sensory')"><span class="sidebar-link-icon">✋</span> Sensorial</div>
+
+      <div class="sidebar-section">Cuidado</div>
+      <div class="sidebar-link" onclick="showDash('therapy')"><span class="sidebar-link-icon">🧠</span> Terapias</div>
+      <div class="sidebar-link" onclick="showDash('medication')"><span class="sidebar-link-icon">💊</span> Medicación</div>
+      <div class="sidebar-link" onclick="showDash('calendar')"><span class="sidebar-link-icon">📅</span> Citas médicas</div>
+
+      <div class="sidebar-section">Análisis</div>
+      <div class="sidebar-link" onclick="showDash('report')"><span class="sidebar-link-icon">📄</span> Reportes PDF</div>
+      <div class="sidebar-link" onclick="showDash('patterns')"><span class="sidebar-link-icon">📊</span> Patrones</div>
+      <div class="sidebar-link" onclick="showDash('professional')"><span class="sidebar-link-icon">👨‍⚕️</span> Panel terapeuta</div>
+
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">MG</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">María García</div>
+            <div class="sidebar-user-role">Plan Profesional</div>
+          </div>
+        </div>
+        <a onclick="show('landing')" style="display:block;padding:8px 6px;font-size:12px;color:var(--ink-soft);text-decoration:none;cursor:pointer;margin-top:6px;">↗ Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" style="position:absolute;top:14px;right:14px;">≡</button>
+
+      <!-- DASH HOME -->
+      <div id="dash-home" class="dash-section">
+        <div class="page-header">
+          <div class="page-eyebrow">PANEL PRINCIPAL</div>
+          <h1 class="page-title">Buenos días, María 👋</h1>
+          <p class="page-sub">Hoy es martes 23 de mayo · Daniel tiene cita con la psicóloga a las 16:00.</p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="dash-grid">
+          <div class="kpi-card">
+            <div class="kpi-label"><span class="kpi-label-dot" style="background:var(--primary);"></span>REGULACIÓN PROMEDIO</div>
+            <div class="kpi-value">3.8 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ 5</span></div>
+            <div class="kpi-trend">↑ +0.4 vs semana pasada</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label"><span class="kpi-label-dot" style="background:var(--violet);"></span>SUEÑO PROMEDIO</div>
+            <div class="kpi-value">3.2 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ 5</span></div>
+            <div class="kpi-trend down">↓ -0.5 vs semana pasada</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label"><span class="kpi-label-dot" style="background:var(--amber);"></span>DÍAS CON CRISIS</div>
+            <div class="kpi-value">2 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">de 7</span></div>
+            <div class="kpi-trend flat">= mismo nivel</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label"><span class="kpi-label-dot" style="background:var(--emerald);"></span>TERAPIAS COMPLETADAS</div>
+            <div class="kpi-value">6 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ 7</span></div>
+            <div class="kpi-trend">↑ 86% asistencia</div>
+          </div>
+        </div>
+
+        <!-- ALERTS -->
+        <div class="alert warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Patrón detectado: sueño y conducta</div>
+            En los últimos 14 días, los días con sueño ≤ 3/5 fueron seguidos de regulación baja en el 78% de los casos. Considera hablarlo con el neuropediatra.
+          </div>
+        </div>
+
+        <div class="two-col">
+          <!-- Quick actions -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Registro rápido</div>
+              <div class="panel-actions">
+                <button class="icon-btn" onclick="showDash('daily')">Ver completo →</button>
+              </div>
+            </div>
+            <div class="quick-actions">
+              <button class="quick-btn" onclick="showDash('daily')"><span class="quick-btn-icon">📔</span>Bitácora del día</button>
+              <button class="quick-btn" onclick="showDash('behavior')"><span class="quick-btn-icon">🌅</span>Registrar crisis</button>
+              <button class="quick-btn" onclick="showDash('medication')"><span class="quick-btn-icon">💊</span>Marcar medicación</button>
+              <button class="quick-btn" onclick="showDash('therapy')"><span class="quick-btn-icon">🧠</span>Notas terapia</button>
+            </div>
+          </div>
+
+          <!-- Activity -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Actividad reciente</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">📔</div>
+              <div class="activity-text">
+                <div class="activity-title">Bitácora del 22 may completada</div>
+                <div class="activity-time">Ayer · 21:35</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">🧠</div>
+              <div class="activity-text">
+                <div class="activity-title">Sesión ABA con Dra. Ruiz</div>
+                <div class="activity-time">Ayer · 17:00</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">💊</div>
+              <div class="activity-text">
+                <div class="activity-title">Risperidona 0.25mg administrada</div>
+                <div class="activity-time">Ayer · 20:00</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">📄</div>
+              <div class="activity-text">
+                <div class="activity-title">Reporte semanal generado</div>
+                <div class="activity-time">Lunes · 09:14</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHART -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Evolución de las últimas 4 semanas</div>
+            <div class="panel-actions">
+              <button class="icon-btn">7d</button>
+              <button class="icon-btn" style="border-color:var(--primary);color:var(--primary);">28d</button>
+              <button class="icon-btn">90d</button>
+            </div>
+          </div>
+          <div class="chart-area">
+            <svg class="chart-svg" viewBox="0 0 600 180" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2563eb" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid -->
+              <line x1="0" y1="45" x2="600" y2="45" stroke="#e2e8f0" stroke-dasharray="3,4"/>
+              <line x1="0" y1="90" x2="600" y2="90" stroke="#e2e8f0" stroke-dasharray="3,4"/>
+              <line x1="0" y1="135" x2="600" y2="135" stroke="#e2e8f0" stroke-dasharray="3,4"/>
+              <!-- Line: regulation -->
+              <path d="M 20 110 L 80 95 L 140 130 L 200 115 L 260 80 L 320 70 L 380 95 L 440 60 L 500 75 L 560 50"
+                    fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 20 110 L 80 95 L 140 130 L 200 115 L 260 80 L 320 70 L 380 95 L 440 60 L 500 75 L 560 50 L 560 180 L 20 180 Z"
+                    fill="url(#g1)"/>
+              <!-- Points -->
+              <circle cx="20" cy="110" r="3" fill="#2563eb"/>
+              <circle cx="80" cy="95" r="3" fill="#2563eb"/>
+              <circle cx="140" cy="130" r="3" fill="#2563eb"/>
+              <circle cx="200" cy="115" r="3" fill="#2563eb"/>
+              <circle cx="260" cy="80" r="3" fill="#2563eb"/>
+              <circle cx="320" cy="70" r="3" fill="#2563eb"/>
+              <circle cx="380" cy="95" r="3" fill="#2563eb"/>
+              <circle cx="440" cy="60" r="3" fill="#2563eb"/>
+              <circle cx="500" cy="75" r="3" fill="#2563eb"/>
+              <circle cx="560" cy="50" r="3" fill="#2563eb"/>
+            </svg>
+          </div>
+          <div style="display:flex;gap:18px;margin-top:14px;font-size:12px;color:var(--ink-soft);">
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:var(--primary);border-radius:2px;"></span>Regulación emocional</span>
+            <span>Tendencia general: mejorando ↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: BITÁCORA DIARIA -->
+      <div id="dash-daily" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">REGISTRO RÁPIDO</div>
+          <h1 class="page-title">Bitácora diaria</h1>
+          <p class="page-sub">Tarda 2 minutos. Los datos se guardan automáticamente.</p>
+        </div>
+
+        <div class="panel">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">FECHA</label>
+              <input type="date" class="form-input" value="2026-05-23">
+            </div>
+            <div class="form-group">
+              <label class="form-label">NIÑO</label>
+              <select class="form-input">
+                <option>Daniel (7 años)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">😴 Sueño</div>
+          <p class="panel-sub">¿Cómo durmió anoche?</p>
+          <div class="scale-grid">
+            <button class="scale-btn">1</button>
+            <button class="scale-btn">2</button>
+            <button class="scale-btn">3</button>
+            <button class="scale-btn active">4</button>
+            <button class="scale-btn">5</button>
+          </div>
+          <div class="scale-meta"><span>Muy malo</span><span>Excelente</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">🌅 Regulación del día</div>
+          <p class="panel-sub">¿Cómo estuvo emocionalmente?</p>
+          <div class="scale-grid">
+            <button class="scale-btn">1</button>
+            <button class="scale-btn">2</button>
+            <button class="scale-btn active">3</button>
+            <button class="scale-btn">4</button>
+            <button class="scale-btn">5</button>
+          </div>
+          <div class="scale-meta"><span>Crisis múltiples</span><span>Día calmado</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">⚡ Detonantes detectados</div>
+          <p class="panel-sub">Marca todo lo que aplicó hoy</p>
+          <div class="chips">
+            <button class="chip active">Ruido fuerte</button>
+            <button class="chip">Luz intensa</button>
+            <button class="chip">Multitud</button>
+            <button class="chip active">Cambio de rutina</button>
+            <button class="chip">Transición</button>
+            <button class="chip">Textura/ropa</button>
+            <button class="chip">Hambre</button>
+            <button class="chip">Cansancio</button>
+            <button class="chip">Demanda social</button>
+            <button class="chip">Pantalla excesiva</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">📝 Notas del día</div>
+          <textarea class="form-input" style="min-height:100px;" placeholder="Ej: hoy probó alimento nuevo (pollo). Cita con terapeuta ocupacional. Buena respuesta a actividad de cepillado."></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-full">Guardar bitácora del día</button>
+      </div>
+
+      <!-- DASH: PERFIL -->
+      <div id="dash-profile" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">DATOS CLÍNICOS</div>
+          <h1 class="page-title">Perfil de Daniel</h1>
+          <p class="page-sub">Toda la información clínica de tu hijo en un solo lugar.</p>
+        </div>
+
+        <div class="tabs-inner">
+          <button class="tab-inner active">Datos generales</button>
+          <button class="tab-inner">Diagnósticos</button>
+          <button class="tab-inner">Alergias</button>
+          <button class="tab-inner">Profesionales</button>
+          <button class="tab-inner">Contactos emergencia</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Información básica</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">NOMBRE COMPLETO</label>
+              <input class="form-input" value="Daniel García Pérez">
+            </div>
+            <div class="form-group">
+              <label class="form-label">FECHA DE NACIMIENTO</label>
+              <input class="form-input" type="date" value="2018-09-14">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">EDAD</label>
+              <input class="form-input" value="7 años, 8 meses" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">ESCUELA</label>
+              <input class="form-input" value="Colegio Montessori del Valle">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">PESO</label>
+              <input class="form-input" value="24 kg">
+            </div>
+            <div class="form-group">
+              <label class="form-label">ESTATURA</label>
+              <input class="form-input" value="121 cm">
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Diagnósticos</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Condición</th><th>Diagnosticado por</th><th>Fecha</th><th>Estado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>TEA Nivel 1</strong> (DSM-5)</td><td>Dra. Sandra Rivera, Neuropediatra</td><td>03/2022</td><td><span class="pill info">Activo</span></td></tr>
+                <tr><td><strong>TDAH</strong> tipo combinado</td><td>Dr. Luis Martínez, Psiquiatra infantil</td><td>11/2023</td><td><span class="pill info">Activo</span></td></tr>
+                <tr><td><strong>Trastorno proc. sensorial</strong></td><td>Terapeuta Ocupacional</td><td>08/2022</td><td><span class="pill warn">En manejo</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-ghost" style="margin-top:14px;">+ Agregar diagnóstico</button>
+        </div>
+      </div>
+
+      <!-- DASH: SUEÑO -->
+      <div id="dash-sleep" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">SEGUIMIENTO</div>
+          <h1 class="page-title">🌙 Sueño</h1>
+          <p class="page-sub">El sueño es el factor #1 que afecta la regulación al día siguiente.</p>
+        </div>
+
+        <div class="dash-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">PROMEDIO 7 DÍAS</div>
+            <div class="kpi-value">3.2 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ 5</span></div>
+            <div class="kpi-trend down">↓ -0.5 vs semana pasada</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">HORAS PROMEDIO</div>
+            <div class="kpi-value">8h 20m</div>
+            <div class="kpi-trend flat">Rango sugerido: 9-11h</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">DESPERTARES NOCTURNOS</div>
+            <div class="kpi-value">3.1 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ noche</span></div>
+            <div class="kpi-trend down">↑ aumentando</div>
+          </div>
+        </div>
+
+        <div class="alert warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Sueño bajando de forma sostenida</div>
+            En las últimas 2 semanas hay tendencia descendente. Considera revisar: rutinas previas, exposición a pantallas, niveles de melatonina, ruido ambiente. Vale la pena comentar en la próxima cita.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Registros recientes</div>
+            <button class="btn btn-primary">+ Nuevo registro</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Fecha</th><th>Hora dormir</th><th>Despertares</th><th>Hora despertar</th><th>Calidad</th><th>Notas</th></tr></thead>
+              <tbody>
+                <tr><td>22 may</td><td>21:30</td><td>2</td><td>06:45</td><td><span class="pill warn">3/5</span></td><td>Pesadilla a las 03:00</td></tr>
+                <tr><td>21 may</td><td>22:15</td><td>4</td><td>07:00</td><td><span class="pill danger">2/5</span></td><td>Mucho ruido en calle</td></tr>
+                <tr><td>20 may</td><td>21:00</td><td>1</td><td>06:30</td><td><span class="pill success">4/5</span></td><td>—</td></tr>
+                <tr><td>19 may</td><td>21:45</td><td>3</td><td>06:50</td><td><span class="pill warn">3/5</span></td><td>Sin melatonina (se acabó)</td></tr>
+                <tr><td>18 may</td><td>21:00</td><td>2</td><td>07:15</td><td><span class="pill warn">3/5</span></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: ALIMENTACIÓN -->
+      <div id="dash-food" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">SEGUIMIENTO</div>
+          <h1 class="page-title">🍯 Alimentación</h1>
+          <p class="page-sub">Eje intestino-cerebro: lo que come hoy puede afectar su regulación mañana.</p>
+        </div>
+
+        <div class="dash-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">VARIEDAD ALIMENTOS</div>
+            <div class="kpi-value">12 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">esta semana</span></div>
+            <div class="kpi-trend">↑ +2 vs anterior</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">DÍAS CON MOLESTIA</div>
+            <div class="kpi-value">3 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">/ 7</span></div>
+            <div class="kpi-trend down">43% de los días</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">ACEPTACIÓN NUEVOS</div>
+            <div class="kpi-value">2 <span style="font-size:14px;color:var(--ink-faint);font-weight:500;">nuevos probados</span></div>
+            <div class="kpi-trend">Pollo · brócoli</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Síntomas digestivos esta semana</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Fecha</th><th>Síntoma</th><th>Posible causa</th><th>Intensidad</th></tr></thead>
+              <tbody>
+                <tr><td>22 may</td><td>Estreñimiento</td><td>Poca fibra ese día</td><td><span class="pill warn">Media</span></td></tr>
+                <tr><td>20 may</td><td>Dolor abdominal</td><td>Probó nuez (alérgeno?)</td><td><span class="pill danger">Alta</span></td></tr>
+                <tr><td>18 may</td><td>Gases</td><td>—</td><td><span class="pill info">Leve</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: CONDUCTA -->
+      <div id="dash-behavior" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">SEGUIMIENTO</div>
+          <h1 class="page-title">🌅 Conducta y crisis</h1>
+          <p class="page-sub">Documenta meltdowns, detonantes y estrategias que funcionaron.</p>
+        </div>
+
+        <div class="alert info">
+          <div class="alert-icon">💡</div>
+          <div class="alert-content">
+            <div class="alert-title">Detonante recurrente identificado</div>
+            "Cambio de rutina" aparece en el 67% de las crisis registradas este mes. Estrategia más efectiva detectada: anticipación con historia social la noche anterior.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Crisis registradas (últimos 30 días)</div>
+            <button class="btn btn-primary">+ Registrar crisis</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Fecha</th><th>Detonante</th><th>Duración</th><th>Intensidad</th><th>Qué funcionó</th></tr></thead>
+              <tbody>
+                <tr><td>22 may 16:30</td><td>Cambio plan tarde</td><td>22 min</td><td><span class="pill warn">Media</span></td><td>Espacio tranquilo + audífonos</td></tr>
+                <tr><td>19 may 19:00</td><td>Ruido vecino</td><td>45 min</td><td><span class="pill danger">Alta</span></td><td>Salir de casa al parque</td></tr>
+                <tr><td>15 may 08:00</td><td>Ropa nueva</td><td>15 min</td><td><span class="pill info">Baja</span></td><td>Volver a ropa habitual</td></tr>
+                <tr><td>11 may 13:00</td><td>Hambre+cansancio</td><td>30 min</td><td><span class="pill warn">Media</span></td><td>Comida + siesta</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: SENSORIAL -->
+      <div id="dash-sensory" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">PERFIL</div>
+          <h1 class="page-title">✋ Perfil sensorial</h1>
+          <p class="page-sub">Comprende qué estímulos lo regulan y cuáles lo desregulan.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Sensibilidad por canal</div>
+          <div style="display:grid;gap:14px;margin-top:14px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>👂 Auditivo</span><span style="color:var(--red);">Hipersensible</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:85%;background:var(--red);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>👁️ Visual</span><span style="color:var(--amber);">Hipersensible moderado</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:65%;background:var(--amber);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>✋ Táctil</span><span style="color:var(--amber);">Hipersensible</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:78%;background:var(--amber);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>👅 Gustativo</span><span style="color:var(--emerald);">Selectivo</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:45%;background:var(--emerald);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>👃 Olfativo</span><span style="color:var(--ink-soft);">Promedio</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:30%;background:var(--ink-soft);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px;"><span>🤸 Propioceptivo</span><span style="color:var(--primary);">Hipo</span></div>
+              <div style="height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;"><div style="height:100%;width:25%;background:var(--primary);"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Estrategias de regulación efectivas</div>
+          <div class="chips">
+            <span class="chip active">Audífonos noise-cancelling</span>
+            <span class="chip active">Manta pesada</span>
+            <span class="chip active">Columpio</span>
+            <span class="chip active">Cepillo Wilbarger</span>
+            <span class="chip active">Compresión profunda</span>
+            <span class="chip">Plastilina/playdoh</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: TERAPIAS -->
+      <div id="dash-therapy" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">CUIDADO</div>
+          <h1 class="page-title">🧠 Terapias</h1>
+          <p class="page-sub">Bitácora de sesiones, avances y tareas para casa.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Terapias activas</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Terapia</th><th>Profesional</th><th>Frecuencia</th><th>Próxima sesión</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><strong>ABA</strong></td><td>Lic. Carolina Ruiz</td><td>2x/semana</td><td>Mar 25 may · 17:00</td><td><span class="pill success">Al día</span></td></tr>
+                <tr><td><strong>Terapia Ocupacional</strong></td><td>T.O. Ana Sosa</td><td>1x/semana</td><td>Jue 27 may · 16:00</td><td><span class="pill success">Al día</span></td></tr>
+                <tr><td><strong>Fonoaudiología</strong></td><td>Dra. Mónica Vera</td><td>1x/semana</td><td>Vie 28 may · 11:00</td><td><span class="pill warn">Avisar</span></td></tr>
+                <tr><td><strong>Psicología infantil</strong></td><td>Dr. Luis Martínez</td><td>cada 2 semanas</td><td>Mié 26 may · 16:00</td><td><span class="pill success">Al día</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Última sesión: ABA con Lic. Ruiz</div>
+          <p class="panel-sub">22 mayo · 17:00-18:00 · 60 min</p>
+          <p style="font-size:14px;line-height:1.6;color:var(--ink-mid);"><strong>Objetivos trabajados:</strong> esperar turno, contacto visual sostenido, pedir ayuda verbalmente.</p>
+          <p style="font-size:14px;line-height:1.6;color:var(--ink-mid);margin-top:10px;"><strong>Avances:</strong> mejoró la espera turno hasta 4 segundos (antes 2 segundos). Pidió ayuda 6 veces de forma espontánea.</p>
+          <p style="font-size:14px;line-height:1.6;color:var(--ink-mid);margin-top:10px;"><strong>Tarea casa:</strong> reforzar petición verbal de ayuda en juego libre. Reforzador: 5 min iPad.</p>
+        </div>
+      </div>
+
+      <!-- DASH: MEDICACIÓN -->
+      <div id="dash-medication" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">CUIDADO</div>
+          <h1 class="page-title">💊 Medicación</h1>
+          <p class="page-sub">Historial completo para el psiquiatra y neuropediatra.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Medicación activa</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Medicamento</th><th>Dosis</th><th>Horario</th><th>Prescrito por</th><th>Desde</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Risperidona</strong></td><td>0.25 mg</td><td>20:00</td><td>Dr. Martínez</td><td>03/2024</td></tr>
+                <tr><td><strong>Metilfenidato</strong></td><td>10 mg</td><td>07:30</td><td>Dr. Martínez</td><td>11/2023</td></tr>
+                <tr><td><strong>Melatonina</strong></td><td>1 mg</td><td>20:30</td><td>Dra. Rivera</td><td>06/2023</td></tr>
+                <tr><td><strong>Omega 3</strong></td><td>500 mg</td><td>Con comida</td><td>Dra. Rivera</td><td>01/2024</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="alert info">
+          <div class="alert-icon">🔔</div>
+          <div class="alert-content">
+            <div class="alert-title">Recordatorios automáticos activos</div>
+            Recibirás notificación 5 minutos antes de cada toma. La melatonina se acaba en 4 días — considera comprar.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Efectos observados</div>
+          <p style="font-size:14px;color:var(--ink-mid);"><strong>Risperidona:</strong> reducción notable de agresividad y rigidez. Aumento de apetito (positivo en su caso).</p>
+          <p style="font-size:14px;color:var(--ink-mid);margin-top:8px;"><strong>Metilfenidato:</strong> mejora concentración escolar. Pérdida de apetito en el día.</p>
+          <p style="font-size:14px;color:var(--ink-mid);margin-top:8px;"><strong>Melatonina:</strong> facilita inicio de sueño en 20-30 min. Sin efectos secundarios observados.</p>
+        </div>
+      </div>
+
+      <!-- DASH: CALENDARIO -->
+      <div id="dash-calendar" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">AGENDA</div>
+          <h1 class="page-title">📅 Citas médicas</h1>
+          <p class="page-sub">Agenda con notificaciones. Nunca olvides preguntar lo importante.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Próximas citas</div>
+            <button class="btn btn-primary">+ Nueva cita</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Fecha</th><th>Profesional</th><th>Tipo</th><th>Lugar</th><th>Recordatorio</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Mar 23 may · 16:00</strong></td><td>Dra. Rivera</td><td>Neuropediatría</td><td>Hospital Ángeles</td><td><span class="pill success">24h antes</span></td></tr>
+                <tr><td>Mié 26 may · 16:00</td><td>Dr. Martínez</td><td>Psiquiatría</td><td>Consultorio Roma</td><td><span class="pill success">2h antes</span></td></tr>
+                <tr><td>Vie 04 jun · 10:00</td><td>Dra. Pérez</td><td>Gastroenterología</td><td>Centro Médico ABC</td><td><span class="pill success">1 día antes</span></td></tr>
+                <tr><td>Lun 14 jun · 17:00</td><td>Dr. López</td><td>Genética</td><td>INER</td><td><span class="pill success">3 días antes</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Preguntas para la cita de hoy (Dra. Rivera)</div>
+          <ul style="list-style:none;padding:0;">
+            <li style="padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:14px;">☑ Revisar baja en sueño últimas 2 semanas</li>
+            <li style="padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:14px;">☑ ¿Hay que ajustar dosis de melatonina?</li>
+            <li style="padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:14px;">☑ Confirmar examen genético pendiente</li>
+            <li style="padding:8px 0;font-size:14px;">☑ Receta para renovar Risperidona</li>
+          </ul>
+          <button class="btn btn-ghost" style="margin-top:14px;">+ Agregar pregunta</button>
+        </div>
+      </div>
+
+      <!-- DASH: REPORTE -->
+      <div id="dash-report" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">ANÁLISIS</div>
+          <h1 class="page-title">📄 Reportes PDF</h1>
+          <p class="page-sub">Genera informes profesionales en segundos. Listos para entregar al médico.</p>
+        </div>
+
+        <div class="dash-grid">
+          <div class="feature-card" style="cursor:pointer;">
+            <div class="feature-icon blue">📅</div>
+            <div class="feature-title">Reporte semanal</div>
+            <div class="feature-desc">Últimos 7 días. Ideal para terapias semanales.</div>
+            <button class="btn btn-primary btn-full" style="margin-top:14px;">Generar PDF</button>
+          </div>
+          <div class="feature-card" style="cursor:pointer;">
+            <div class="feature-icon violet">📆</div>
+            <div class="feature-title">Reporte mensual</div>
+            <div class="feature-desc">Últimos 30 días. Ideal para neuropediatra.</div>
+            <button class="btn btn-primary btn-full" style="margin-top:14px;">Generar PDF</button>
+          </div>
+          <div class="feature-card" style="cursor:pointer;">
+            <div class="feature-icon teal">📊</div>
+            <div class="feature-title">Reporte personalizado</div>
+            <div class="feature-desc">Elige fechas y secciones específicas.</div>
+            <button class="btn btn-ghost btn-full" style="margin-top:14px;">Configurar</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Reportes generados</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Fecha</th><th>Tipo</th><th>Periodo</th><th>Para</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>20 may</td><td>Semanal</td><td>13–19 may</td><td>Dra. Ruiz (ABA)</td><td><button class="icon-btn">↓ Descargar</button></td></tr>
+                <tr><td>01 may</td><td>Mensual</td><td>Abril</td><td>Dra. Rivera</td><td><button class="icon-btn">↓ Descargar</button></td></tr>
+                <tr><td>15 abr</td><td>Personalizado</td><td>1 ene – 31 mar</td><td>Dr. Martínez</td><td><button class="icon-btn">↓ Descargar</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: PATRONES -->
+      <div id="dash-patterns" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">ANÁLISIS</div>
+          <h1 class="page-title">📊 Patrones detectados</h1>
+          <p class="page-sub">Conexiones automáticas entre variables. Toma decisiones basadas en datos, no en memoria.</p>
+        </div>
+
+        <div class="alert warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Correlación fuerte: sueño ↔ regulación</div>
+            En los últimos 60 días, cuando el sueño fue ≤ 3/5, la regulación al día siguiente cayó por debajo de 3/5 en el 78% de los casos. <strong>Confianza estadística: alta.</strong>
+          </div>
+        </div>
+
+        <div class="alert info">
+          <div class="alert-icon">💡</div>
+          <div class="alert-content">
+            <div class="alert-title">Detonante #1 del mes</div>
+            "Cambio de rutina" apareció en el 67% de las crisis. Estrategia más efectiva: anticipación con historia social la noche anterior (éxito 4 de 5 veces).
+          </div>
+        </div>
+
+        <div class="alert success">
+          <div class="alert-icon">✓</div>
+          <div class="alert-content">
+            <div class="alert-title">Mejora sostenida en alimentación</div>
+            Variedad de alimentos aceptados subió de 8 a 12 en 2 meses (+50%). La estrategia de "exposición sin presión" está funcionando.
+          </div>
+        </div>
+
+        <div class="alert info">
+          <div class="alert-icon">📌</div>
+          <div class="alert-content">
+            <div class="alert-title">Día más estable: domingo</div>
+            Promedio de regulación en domingos: 4.3/5. El más bajo: lunes (3.1/5). La transición fin-de-semana → semana es el momento crítico.
+          </div>
+        </div>
+      </div>
+
+      <!-- DASH: PROFESIONAL -->
+      <div id="dash-professional" class="dash-section" style="display:none;">
+        <div class="page-header">
+          <div class="page-eyebrow">PANEL OPCIONAL</div>
+          <h1 class="page-title">👨‍⚕️ Panel para terapeuta o médico</h1>
+          <p class="page-sub">Invita a un profesional para que vea los datos de tu hijo. Permisos granulares.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Profesionales con acceso</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nombre</th><th>Rol</th><th>Acceso</th><th>Última visita</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><strong>Dra. Sandra Rivera</strong></td><td>Neuropediatra</td><td><span class="pill info">Lectura completa</span></td><td>Hace 3 días</td><td><button class="icon-btn">Configurar</button></td></tr>
+                <tr><td><strong>Lic. Carolina Ruiz</strong></td><td>Terapeuta ABA</td><td><span class="pill info">Conducta + Sensorial</span></td><td>Ayer</td><td><button class="icon-btn">Configurar</button></td></tr>
+                <tr><td><strong>T.O. Ana Sosa</strong></td><td>Terapia Ocupacional</td><td><span class="pill info">Sensorial + Notas TO</span></td><td>Hace 1 semana</td><td><button class="icon-btn">Configurar</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" style="margin-top:14px;">+ Invitar profesional</button>
+        </div>
+
+        <div class="alert info">
+          <div class="alert-icon">🔒</div>
+          <div class="alert-content">
+            <div class="alert-title">Tus datos te pertenecen</div>
+            Los profesionales solo ven lo que tú autorices. Puedes revocar accesos en cualquier momento. Todos los accesos quedan registrados en bitácora de auditoría.
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- LEGAL: PRIVACIDAD -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-legal-privacy">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" onclick="show('landing')">
+        <div class="logo-mark">∞</div>
+        <div class="logo-text">TEA Registro 360</div>
+      </a>
+      <a class="btn btn-ghost" onclick="show('landing')">← Volver</a>
+    </div>
+  </nav>
+  <div class="legal-screen">
+    <h1>Aviso de Privacidad</h1>
+    <p class="updated">Última actualización: 23 de mayo de 2026</p>
+
+    <div class="callout">
+      <strong>⚠ DOCUMENTO BASE.</strong> Este aviso es una plantilla de partida conforme a la LFPDPPP de México. Debe ser revisado y firmado por abogado especializado antes de operar comercialmente.
+    </div>
+
+    <p>De conformidad con lo dispuesto por la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad, <strong>TEA Registro 360</strong>, operado por el <strong>Lic. Enrique Alonso Trujillo Martínez</strong>, con domicilio en [DIRECCIÓN COMPLETA A COMPLETAR], pone a su disposición el presente Aviso de Privacidad.</p>
+
+    <h2>1. Identidad y domicilio del responsable</h2>
+    <p>El responsable del tratamiento de sus datos personales es el <strong>Lic. Enrique Alonso Trujillo Martínez</strong>, con domicilio en [DIRECCIÓN], correo electrónico de contacto: <strong>privacidad@tearegistro360.com</strong>.</p>
+
+    <h2>2. Datos personales que recabamos</h2>
+    <p>Para las finalidades señaladas, podemos recabar los siguientes datos:</p>
+    <h3>2.1 Datos del titular de la cuenta (padre/madre/tutor)</h3>
+    <ul>
+      <li>Nombre completo</li>
+      <li>Correo electrónico</li>
+      <li>Contraseña (almacenada con hash bcrypt, nunca en texto plano)</li>
+      <li>Número telefónico (opcional)</li>
+      <li>Datos de facturación (procesados por Stripe; no almacenamos números de tarjeta)</li>
+    </ul>
+
+    <h3>2.2 Datos del menor a cargo del titular</h3>
+    <p>Reconocemos que los datos del menor son <strong>datos personales sensibles</strong> conforme al Art. 3, fracción VI, de la LFPDPPP, por lo que su tratamiento requiere consentimiento expreso por escrito del padre, madre o tutor legal:</p>
+    <ul>
+      <li>Nombre y fecha de nacimiento</li>
+      <li>Diagnósticos médicos (TEA, TDAH, comorbilidades)</li>
+      <li>Información médica: medicación, alergias, peso, estatura</li>
+      <li>Bitácoras conductuales, sensoriales, de sueño y alimentación</li>
+      <li>Información de profesionales tratantes</li>
+    </ul>
+
+    <h2>3. Finalidades del tratamiento</h2>
+    <h3>3.1 Finalidades primarias (necesarias para el servicio)</h3>
+    <ul>
+      <li>Prestar el servicio de organización y registro de información clínica</li>
+      <li>Generar reportes solicitados por el titular</li>
+      <li>Permitir compartir información con profesionales autorizados por el titular</li>
+      <li>Procesar pagos y emitir facturación</li>
+      <li>Soporte técnico y atención a usuarios</li>
+      <li>Cumplir con obligaciones legales aplicables</li>
+    </ul>
+    <h3>3.2 Finalidades secundarias (requieren consentimiento separado)</h3>
+    <ul>
+      <li>Análisis estadísticos anonimizados para mejorar el producto</li>
+      <li>Comunicaciones de marketing y novedades del servicio</li>
+    </ul>
+
+    <h2>4. Transferencias de datos</h2>
+    <p>No vendemos sus datos. Únicamente compartimos información con los siguientes terceros, bajo contratos de tratamiento de datos:</p>
+    <ul>
+      <li><strong>Stripe Inc.</strong> (procesador de pagos) — únicamente datos de facturación</li>
+      <li><strong>[Proveedor de hosting]</strong> — para almacenamiento cifrado</li>
+      <li><strong>Profesionales tratantes</strong> autorizados expresamente por el titular</li>
+      <li><strong>Autoridades competentes</strong> cuando exista requerimiento legal fundado y motivado</li>
+    </ul>
+
+    <h2>5. Seguridad de la información</h2>
+    <p>Implementamos medidas técnicas, administrativas y físicas razonables conforme al estado del arte:</p>
+    <ul>
+      <li>Cifrado TLS 1.3 en tránsito</li>
+      <li>Cifrado AES-256 en reposo para bases de datos</li>
+      <li>Autenticación con contraseñas hasheadas (bcrypt)</li>
+      <li>Bitácoras de acceso y auditoría</li>
+      <li>Respaldos cifrados con rotación periódica</li>
+      <li>Capacitación al personal con acceso a datos</li>
+    </ul>
+
+    <h2>6. Derechos ARCO</h2>
+    <p>Usted tiene derecho a <strong>Acceder, Rectificar, Cancelar u Oponerse</strong> al tratamiento de sus datos. Para ejercer estos derechos, envíe solicitud a <strong>privacidad@tearegistro360.com</strong> con:</p>
+    <ul>
+      <li>Nombre completo y medio para recibir notificaciones</li>
+      <li>Identificación oficial (INE o pasaporte)</li>
+      <li>Descripción clara del derecho que ejerce</li>
+      <li>Documentos que sustenten su petición</li>
+    </ul>
+    <p>Responderemos en un plazo no mayor a <strong>20 días hábiles</strong> conforme al Art. 32 de la LFPDPPP.</p>
+
+    <h2>7. Conservación y supresión</h2>
+    <p>Los datos se conservan mientras la cuenta esté activa. Al cancelar la cuenta, podrá descargar todos sus datos. Después de 90 días de inactividad o cancelación voluntaria, los datos se eliminan permanentemente de nuestros sistemas, salvo obligación legal de conservación.</p>
+
+    <h2>8. Cookies y tecnologías similares</h2>
+    <p>Utilizamos cookies estrictamente necesarias para mantener su sesión y cookies analíticas anonimizadas. No utilizamos cookies de publicidad de terceros.</p>
+
+    <h2>9. Cambios al aviso</h2>
+    <p>Notificaremos cambios materiales por correo electrónico con al menos 30 días de anticipación. La versión vigente siempre estará disponible en este enlace.</p>
+
+    <h2>10. Autoridad de control</h2>
+    <p>Si considera que sus derechos han sido vulnerados, puede acudir al <strong>Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI)</strong>: <strong>home.inai.org.mx</strong>.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- LEGAL: TÉRMINOS -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-legal-terms">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" onclick="show('landing')">
+        <div class="logo-mark">∞</div>
+        <div class="logo-text">TEA Registro 360</div>
+      </a>
+      <a class="btn btn-ghost" onclick="show('landing')">← Volver</a>
+    </div>
+  </nav>
+  <div class="legal-screen">
+    <h1>Términos y Condiciones</h1>
+    <p class="updated">Última actualización: 23 de mayo de 2026</p>
+
+    <div class="callout">
+      <strong>⚠ DOCUMENTO BASE.</strong> Plantilla de partida. Debe ser revisada por abogado antes de operar comercialmente.
+    </div>
+
+    <h2>1. Aceptación</h2>
+    <p>Al crear una cuenta o utilizar TEA Registro 360 (en adelante, "la Plataforma"), usted acepta estos Términos y Condiciones. Si no está de acuerdo, debe abstenerse de utilizar la Plataforma.</p>
+
+    <h2>2. Descripción del servicio</h2>
+    <p>TEA Registro 360 es una <strong>herramienta de organización personal</strong> que permite registrar y consultar información relacionada con el cuidado diario de un menor en el espectro autista. <strong>La Plataforma NO es un dispositivo médico, NO emite diagnósticos, NO sustituye atención médica profesional y NO debe utilizarse en emergencias.</strong></p>
+
+    <h2>3. Elegibilidad</h2>
+    <p>Para usar la Plataforma debe: (a) ser mayor de 18 años; (b) ser padre, madre, tutor legal o profesional debidamente autorizado del menor cuya información registre; (c) tener capacidad legal para contratar.</p>
+
+    <h2>4. Cuenta de usuario</h2>
+    <p>Usted es responsable de la confidencialidad de su contraseña y de toda actividad en su cuenta. Notifique de inmediato cualquier acceso no autorizado a <strong>soporte@tearegistro360.com</strong>.</p>
+
+    <h2>5. Planes y pagos</h2>
+    <p>Los precios actuales son los publicados en la página de precios. Las suscripciones se renuevan automáticamente. Puede cancelar en cualquier momento desde su panel; conservará acceso hasta el final del periodo pagado. <strong>No hay reembolsos por periodos parciales</strong>, salvo lo dispuesto por leyes de protección al consumidor aplicables.</p>
+
+    <h2>6. Uso aceptable</h2>
+    <p>Usted se obliga a:</p>
+    <ul>
+      <li>Proporcionar información veraz</li>
+      <li>No registrar datos de menores sin derecho legal para hacerlo</li>
+      <li>No utilizar la Plataforma para fines ilegales o que dañen a terceros</li>
+      <li>No intentar acceder a cuentas ajenas, ingeniería inversa, escraping masivo, o cualquier ataque a la infraestructura</li>
+      <li>No compartir credenciales con terceros no autorizados</li>
+    </ul>
+
+    <h2>7. Propiedad intelectual</h2>
+    <p>El código, diseño, marca, contenidos y materiales de la Plataforma son propiedad del Lic. Enrique Alonso Trujillo Martínez. Los <strong>datos que usted registra son de su propiedad</strong> y puede exportarlos cuando lo desee.</p>
+
+    <h2>8. Limitación de responsabilidad</h2>
+    <p>La Plataforma se proporciona "tal cual". <strong>NO garantizamos resultados clínicos, terapéuticos ni de mejora conductual</strong>. La utilidad de la información registrada depende del criterio de profesionales tratantes. Nuestra responsabilidad máxima agregada se limita al monto pagado por usted en los 12 meses anteriores al hecho que origine reclamo.</p>
+
+    <h2>9. Indemnización</h2>
+    <p>Usted se obliga a indemnizar al titular y mantenerlo libre de daños por reclamaciones derivadas de: (a) su uso indebido de la Plataforma; (b) violación de estos Términos; (c) infracción a derechos de terceros.</p>
+
+    <h2>10. Terminación</h2>
+    <p>Podemos suspender o terminar su cuenta por incumplimiento grave de estos Términos, con notificación previa cuando sea razonablemente posible. Usted puede cancelar en cualquier momento.</p>
+
+    <h2>11. Modificaciones</h2>
+    <p>Podemos actualizar estos Términos. Notificaremos cambios materiales con al menos 30 días de anticipación por correo electrónico.</p>
+
+    <h2>12. Ley aplicable y jurisdicción</h2>
+    <p>Estos Términos se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a la jurisdicción de los tribunales competentes de [CIUDAD A DEFINIR], renunciando a cualquier otro fuero que pudiera corresponderles.</p>
+
+    <h2>13. Contacto</h2>
+    <p>Para cualquier asunto relacionado con estos Términos: <strong>legal@tearegistro360.com</strong></p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- LEGAL: USO RESPONSABLE -->
+<!-- ════════════════════════════════════════════ -->
+<div class="screen" id="screen-legal-responsible">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" onclick="show('landing')">
+        <div class="logo-mark">∞</div>
+        <div class="logo-text">TEA Registro 360</div>
+      </a>
+      <a class="btn btn-ghost" onclick="show('landing')">← Volver</a>
+    </div>
+  </nav>
+  <div class="legal-screen">
+    <h1>Aviso de Uso Responsable</h1>
+    <p class="updated">Última actualización: 23 de mayo de 2026</p>
+
+    <div class="callout">
+      <strong>📌 LÉAME COMPLETO.</strong> Este aviso es crítico para entender qué es y qué NO es TEA Registro 360. Léalo antes de confiar decisiones clínicas a la información de esta plataforma.
+    </div>
+
+    <h2>Qué es esta herramienta</h2>
+    <p>TEA Registro 360 es un <strong>cuaderno digital organizado</strong>. Su función es permitir a padres, madres y tutores documentar de forma estructurada el día a día de su hijo neurodivergente y compartir esa información con sus profesionales tratantes.</p>
+
+    <h2>Qué NO es esta herramienta</h2>
+    <ul>
+      <li><strong>NO es un dispositivo médico</strong> en términos de COFEPRIS, FDA, ni regulación equivalente.</li>
+      <li><strong>NO diagnostica.</strong> Los diagnósticos solo pueden ser realizados por profesionales de la salud calificados (neuropediatra, psiquiatra, neurólogo) mediante evaluación directa.</li>
+      <li><strong>NO sustituye la atención médica, psicológica ni terapéutica.</strong></li>
+      <li><strong>NO emite recetas, prescripciones, ni recomendaciones farmacológicas.</strong></li>
+      <li><strong>NO es para emergencias.</strong> Si su hijo presenta una crisis severa, autolesión, intento de daño a sí mismo o a terceros, ideación suicida o cualquier emergencia médica, llame de inmediato al <strong>911</strong> o acuda al servicio de urgencias más cercano.</li>
+    </ul>
+
+    <h2>Cómo deben interpretarse los "patrones" detectados</h2>
+    <p>La sección de análisis de patrones identifica <strong>correlaciones estadísticas</strong> entre los datos que usted ha registrado. <strong>Correlación NO es causalidad.</strong> Que dos variables aparezcan juntas no significa que una cause la otra. Estos patrones son <strong>puntos de partida para conversaciones con profesionales</strong>, no conclusiones clínicas.</p>
+
+    <h2>Limitaciones inherentes a los datos auto-reportados</h2>
+    <p>La información que usted registra está sujeta a sesgos: memoria selectiva, percepción subjetiva, cansancio del cuidador, días que se olvidan. Esto no es un defecto: es una característica de cualquier diario clínico. Los profesionales tratantes saben interpretar esto.</p>
+
+    <h2>Sobre la medicación</h2>
+    <p>El módulo de medicación es un <strong>recordatorio y bitácora</strong>. Nunca modifique dosis, suspenda medicamentos ni introduzca suplementos sin consultar al profesional que los prescribió. Los efectos observados que registre son información valiosa para el médico, pero <strong>la decisión clínica le corresponde a él</strong>.</p>
+
+    <h2>Compromiso del padre/tutor</h2>
+    <p>Al usar TEA Registro 360, usted reconoce que:</p>
+    <ol>
+      <li>Continuará la atención médica, terapéutica y educativa de su hijo con profesionales calificados.</li>
+      <li>No tomará decisiones de tratamiento basadas únicamente en esta plataforma.</li>
+      <li>Consultará a un profesional ante cualquier duda, cambio significativo o señal de alarma.</li>
+      <li>Buscará atención inmediata en casos de emergencia.</li>
+    </ol>
+
+    <h2>Compromiso nuestro</h2>
+    <p>Por nuestra parte, nos comprometemos a:</p>
+    <ol>
+      <li>Mantener sus datos seguros y privados.</li>
+      <li>No emitir ningún juicio clínico ni recomendación médica desde la plataforma.</li>
+      <li>Mejorar continuamente la herramienta basándonos en evidencia y feedback de familias y profesionales.</li>
+      <li>Ser transparentes en cómo funcionan las detecciones de patrones.</li>
+    </ol>
+
+    <h2>Contacto en caso de duda sobre el uso</h2>
+    <p>Si tiene cualquier duda sobre el uso responsable de la plataforma, escríbanos a <strong>contacto@tearegistro360.com</strong>.</p>
+
+    <div class="callout" style="background:var(--primary-bg);border-color:var(--primary);color:var(--primary-dark);">
+      <strong>Recuerde:</strong> usted es el experto en su hijo. Esta herramienta lo ayuda a organizar lo que ya sabe. Los profesionales aportan el conocimiento clínico. Juntos, los tres componentes — usted, los profesionales y los datos organizados — construyen el mejor camino posible para su hijo.
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showDash(name) {
+  document.querySelectorAll('.dash-section').forEach(s => s.style.display = 'none');
+  document.getElementById('dash-' + name).style.display = 'block';
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  event.target.closest('.sidebar-link').classList.add('active');
+  document.querySelector('.main').scrollTo(0, 0);
+  window.scrollTo(0, 0);
+  // close sidebar on mobile
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function scrollTo2(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+</body>
+</html>
